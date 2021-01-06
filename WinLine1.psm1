@@ -44,17 +44,20 @@ function Write-Theme {
     if ($path.StartsWith("~")) {
         if($path -ne "~"){
             $path +="\"
+            $path +=" "
+            $prompt += Write-Prompt -Object "$([char]0xf07c)  $path" -ForegroundColor $sl.Colors.PromptForegroundColor -BackgroundColor $sl.Colors.PromptBackgroundColor
+        }else{
+            $path +=" "
+            $prompt += Write-Prompt -Object "$([char]0xf015)  $path" -ForegroundColor $sl.Colors.PromptForegroundColor -BackgroundColor $sl.Colors.PromptBackgroundColor
         }
-        $path +=" "
-        $prompt += Write-Prompt -Object "$([char]0xf015) $path" -ForegroundColor $sl.Colors.PromptForegroundColor -BackgroundColor $sl.Colors.PromptBackgroundColor
     }
     elseif($path.StartsWith("C")) {
         $path +="\ "
-        $prompt += Write-Prompt -Object "$([char]0xf023) $path"+"\" -ForegroundColor $sl.Colors.PromptForegroundColor -BackgroundColor $sl.Colors.PromptBackgroundColor
+        $prompt += Write-Prompt -Object "$([char]0xf023)  $path"+"\" -ForegroundColor $sl.Colors.PromptForegroundColor -BackgroundColor $sl.Colors.PromptBackgroundColor
     }
     else {
         $path +="\ "
-        $prompt += Write-Prompt -Object "$([char]0xf115) $path" -ForegroundColor $sl.Colors.PromptForegroundColor -BackgroundColor $sl.Colors.PromptBackgroundColor
+        $prompt += Write-Prompt -Object "$([char]0xf115)  $path" -ForegroundColor $sl.Colors.PromptForegroundColor -BackgroundColor $sl.Colors.PromptBackgroundColor
     }
 
     $status = Get-VCSStatus
